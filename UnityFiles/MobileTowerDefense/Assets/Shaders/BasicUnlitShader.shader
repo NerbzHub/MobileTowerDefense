@@ -48,7 +48,7 @@
 				{
 					v2f o;
 					o.vertex = UnityObjectToClipPos(v.vertex);
-					o.uv = TRANSFORM_TEX(v.uv, _MainTex) * _Color;
+					o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 					UNITY_TRANSFER_FOG(o,o.vertex);
 					return o;
 				}
@@ -57,6 +57,7 @@
 				{
 					// sample the texture
 					float4 col = tex2D(_MainTex, i.uv);
+					col *= _Color;
 					// apply fog
 					UNITY_APPLY_FOG(i.fogCoord, col);
 					return col;
